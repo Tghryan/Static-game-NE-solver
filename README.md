@@ -18,3 +18,62 @@ Mixed Strategy NE: Computes probabilistic equilibria and expected payoffs using 
 User-Friendly UI: Responsive design built with Bootstrap 5.
 
 用户友好界面：基于 Bootstrap 5 的响应式设计，简洁美观。
+
+🛠️ Tech Stack | 技术栈
+Backend: Python, Flask
+
+Game Theory Engine: PyGambit
+
+Frontend: HTML5, Bootstrap 5, JavaScript
+
+Template Engine: Jinja2
+
+🚀 Getting Started | 快速开始
+Prerequisites | 环境依赖
+Python 3.8+
+
+pip (Python package manager)
+
+Installation | 安装步骤
+Clone the repository | 克隆仓库
+
+Bash
+git clone https://github.com/your-username/game-theory-solver.git
+cd game-theory-solver
+Install dependencies | 安装依赖
+
+Bash
+pip install flask pygambit
+Run the application | 运行程序
+
+Bash
+python app.py
+Access the tool | 访问页面
+Open your browser and navigate to http://127.0.0.1:5000.
+打开浏览器访问 http://127.0.0.1:5000。
+
+📖 Usage | 使用说明
+Enter the names of Player 1 and Player 2.
+
+Input strategies separated by commas (e.g., Concert, Ballgame).
+
+Fill in the payoffs for each scenario in the dynamically generated matrix.
+
+Click "Solve Nash Equilibria" to view the results.
+
+输入 玩家 1 和 玩家 2 的名称。
+
+输入策略名称，用逗号分隔（例如：Concert, Ballgame）。
+
+在动态生成的矩阵中填入每个场景下的收益。
+
+点击 “计算纳什均衡” 查看结果。
+
+📄 Project Structure | 项目结构
+Plaintext
+.
+├── app.py              # Flask backend logic & Gambit integration
+├── templates/
+│   ├── index.html      # Input form with dynamic JS matrix
+│   └── result.html     # Results display page
+└── README.md           # Documentation
