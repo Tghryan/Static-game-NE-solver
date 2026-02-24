@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results - Game Theory Solver</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow border-0 mb-4">
+                <div class="card-header bg-success text-white text-center py-3">
+                    <h2 class="mb-0">计算结果: {{ p1_name }} vs {{ p2_name }}</h2>
+                </div>
+                <div class="card-body p-4">
+                    
+                    <h4 class="mb-3 text-primary border-bottom pb-2">🎯 纯策略纳什均衡 (PSNE)</h4>
+                    {% if psne %}
+                        <div class="row">
+                        {% for eq in psne %}
+                            <div class="col-md-6 mb-3">
+                                <div class="card border-primary h-100">
+                                    <div class="card-header bg-primary text-white py-1">均衡 #{{ loop.index }}</div>
+                                    <div class="card-body">
+                                        <p class="mb-1"><strong>{{ p1_name }} 选择:</strong> <span class="badge bg-light text-dark">{{ eq.p1_choice }}</span></p>
+                                        <p class="mb-2"><strong>{{ p2_name }} 选择:</strong> <span class="badge bg-light text-dark">{{ eq.p2_choice }}</span></p>
+                                        <hr class="my-2">
+                                        <p class="mb-0 text-muted small">
+                                            预期收益: {{ p1_name }} ({{ eq.p1_payoff }}), {{ p2_name }} ({{ eq.p2_payoff }})
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="alert alert-secondary">该博弈不存在纯策略纳什均衡。</div>
+                    {% endif %}
+
+                    <h4 class="mb-3 mt-4 text-danger border-bottom pb-2">🎲 混合策略纳什均衡 (MSNE)</h4>
+                    {% if msne %}
+                        {% for eq in msne %}
+                            <div class="card border-danger mb-3">
+                                <div class="card-header bg-danger text-white py-1">均衡 #{{ loop.index }}</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h6 class="fw-bold">{{ p1_name }} 的概率分布:</h6>
+                                            <ul class="list-unstyled mb-0">
+                                                {% for strat, prob in eq.p1_probs.items() %}
+                                                    <li>• {{ strat }}: <strong>{{ prob }}</strong></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <div class="col-6">
+                                            <h6 class="fw-bold">{{ p2_name }} 的概率分布:</h6>
+                                            <ul class="list-unstyled mb-0">
+                                                {% for strat, prob in eq.p2_probs.items() %}
+                                                    <li>• {{ strat }}: <strong>{{ prob }}</strong></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <hr class="my-2">
+                                    <p class="mb-0 text-muted small">
+                                        预期收益: {{ p1_name }} ({{ eq.p1_payoff }}), {{ p2_name }} ({{ eq.p2_payoff }})
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="alert alert-secondary">未找到混合策略纳什均衡。</div>
+                    {% endif %}
+                    
+                    <div class="text-center mt-4">
+                        <a href="/" class="btn btn-outline-secondary">← 返回重新计算</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
